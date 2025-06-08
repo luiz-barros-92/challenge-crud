@@ -1,0 +1,10 @@
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Luiz Barros', '055.658.888-80', 35000.00, '1992-04-15', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Brenda Barros', '048.678.708-52', 4500.00, '1994-05-25', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Matilda Wormwood', '484.584.988-61', 5000.00, '1984-06-15', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Dennis Roger Mitchell', '985.542.548-34', 8450.00, '1982-04-18', 3);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Ellen Ripley', '781.845.554-90', 38952.00, '1962-06-12', 4);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('James Bond', '054.628.963-54', 155940.00, '1948-07-28', 6);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Clarice Starling', '452.512.584-50', 12000.00, '1970-08-01', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Tyler Durden', '032.654.925-88', 8522.00, '1964-12-21', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Hannibal Lecter', '548.621.689-96', 1500.00, '1948-10-11', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Nick Bradshaw ', '379.658.555-98', 89560.00, '1960-08-25', 3);
