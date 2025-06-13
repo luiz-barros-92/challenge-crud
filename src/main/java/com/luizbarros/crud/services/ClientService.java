@@ -1,8 +1,8 @@
 package com.luizbarros.crud.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +23,8 @@ public class ClientService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<ClientDTO> findAll() {
-		List<Client> list = repository.findAll();
-		return list.stream().map(x -> new ClientDTO(x)).toList();
+	public Page<ClientDTO> findAll(Pageable pageable) {
+		Page<Client> list = repository.findAll(pageable);
+		return list.map(x -> new ClientDTO(x));
 	}
 }
