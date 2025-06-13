@@ -1,27 +1,24 @@
 package com.luizbarros.crud.controllers;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.luizbarros.crud.entities.Client;
-import com.luizbarros.crud.repositories.ClientRepository;
+import com.luizbarros.crud.dto.ClientDTO;
+import com.luizbarros.crud.services.ClientService;
 
 @RestController
 @RequestMapping (value = "/clients")
 public class ClientController {
 	
 	@Autowired
-	private ClientRepository repository;
+	private ClientService service;
 	
-	@GetMapping
-	public String test() {
+	@GetMapping(value = "/{id}")
+	public ClientDTO findById(@PathVariable Long id) {
 		
-		Optional <Client> result = repository.findById(1L);
-		Client client = result.get();
-		return client.getName();		
+		return service.findById(id);
 	}
 }
