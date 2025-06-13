@@ -1,5 +1,7 @@
 package com.luizbarros.crud.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,5 +20,11 @@ public class ClientService {
 	public ClientDTO findById(Long id) {
 		Client client = repository.findById(id).get();
 		return new ClientDTO(client);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<ClientDTO> findAll() {
+		List<Client> list = repository.findAll();
+		return list.stream().map(x -> new ClientDTO(x)).toList();
 	}
 }
