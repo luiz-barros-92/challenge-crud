@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.luizbarros.crud.dto.ClientDTO;
 import com.luizbarros.crud.entities.Client;
 import com.luizbarros.crud.repositories.ClientRepository;
+import com.luizbarros.crud.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ClientService {
@@ -18,7 +19,7 @@ public class ClientService {
 	
 	@Transactional(readOnly = true)
 	public ClientDTO findById(Long id) {
-		Client client = repository.findById(id).get();
+		Client client = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Resource not found"));
 		return new ClientDTO(client);
 	}
 	
