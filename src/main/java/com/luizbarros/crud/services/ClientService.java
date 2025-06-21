@@ -1,14 +1,17 @@
 package com.luizbarros.crud.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.luizbarros.crud.dto.ClientDTO;
 import com.luizbarros.crud.entities.Client;
 import com.luizbarros.crud.repositories.ClientRepository;
+import com.luizbarros.crud.services.exceptions.DataBaseException;
 import com.luizbarros.crud.services.exceptions.ResourceNotFoundException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -52,9 +55,17 @@ public class ClientService {
 		}		
 	}
 	
-	@Transactional
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
-		repository.deleteById(id);
+		if (!repository.existsById(id)) {
+			throw new ResourceNotFoundException("Resource not found");
+		}
+		try {
+			repository.deleteById(id);
+		} 
+		catch (DataIntegrityViolationException e) {
+			throw new DataBaseException("Referential integrity violation");
+		}		
 	}
 	
 	private void copyDtoToEntity(ClientDTO dto, Client entity) {
